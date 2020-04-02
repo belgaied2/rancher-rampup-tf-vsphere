@@ -19,17 +19,27 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = "OracleLinux-x64-7.6-minimal-docker"
+  name          = var.vm_template
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
+module "rancher2_cluster" {
+  source = "../tf-rancher2-vsphere"
+  rancher2_api_url = var.rancher2_api_url
+  rancher2_access_key = var.rancher2_access_key
+  rancher2_secret_key = var.rancher2_secret_key
+}
+
 resource "vsphere_virtual_machine" "vm" {
-  name             = "mbh-terraform-test"
+  
+  count = 3
+
+  name             = "mbh-conti-custom-node-${count.index}"
   resource_pool_id = data.vsphere_resource_pool.pool.id
   datastore_id     = data.vsphere_datastore.datastore.id
 
   num_cpus = 2
-  memory   = 1024
+  memory   = 8192
   guest_id = "ubuntu64Guest"
 
   network_interface {
@@ -43,5 +53,18 @@ resource "vsphere_virtual_machine" "vm" {
 
   clone {
     template_uuid = data.vsphere_virtual_machine.template.id
+  }
+
+  provisioner "remote-exec" {
+    connection {
+      type     = "ssh"
+      user     = "root"
+      password = var.root_password
+      host     = self.default_ip_address
+    }
+      
+    inline = [
+      module.rancher2_cluster.node_command
+    ]
   }
 }

@@ -1,4 +1,5 @@
 /**/.terraform
 /**/.DS_Store
-terraform/tf-rancher2-vsphere/rancher2.auto.tfvars
-terraform/tf-rancher2-vsphere/vsphere.auto.tfvars
+terraform/**/rancher2.auto.tfvars
+terraform/**/vsphere.auto.tfvars
+terraform/**/ssh.auto.tfvars

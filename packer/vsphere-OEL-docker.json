@@ -18,7 +18,7 @@
 
         "template": "OracleLinux-x64-7.6-minimal",
 
-        "vm_name": "OracleLinux-x64-7.6-minimal-docker-2",
+        "vm_name": "OracleLinux-x64-7.6-minimal-docker",
         "resource_pool": "mbh",      
         "datastore": "ranch01-silo01-vm01",
         "ssh_username": "root",
@@ -29,7 +29,6 @@
         "inline": [
             "sudo yum install -y http://mirror.centos.org/centos/7/extras/x86_64/Packages/container-selinux-2.107-1.el7_6.noarch.rpm",
             "curl https://releases.rancher.com/install-docker/19.03.sh | sh",
-            "yum install -y cloud-init",
             "systemctl enable docker",
             "systemctl disable firewalld",
             "sudo usermod -a -G docker {{user `docker_user`}}"
