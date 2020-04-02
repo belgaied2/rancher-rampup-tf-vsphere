@@ -19,7 +19,7 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = "OracleLinux-x64-7.6-minimal"
+  name          = "OracleLinux-x64-7.6-minimal-docker"
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
