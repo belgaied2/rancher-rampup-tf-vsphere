@@ -64,6 +64,8 @@ resource "vsphere_virtual_machine" "vm" {
     }
       
     inline = [
+      "hostname mbh-conti-${count.index}",
+      "echo mbh-conti-${count.index}.mbh.local > /etc/hostname",
       module.rancher2_cluster.node_command
     ]
   }
