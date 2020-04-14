@@ -1,7 +1,7 @@
 terraform{
     backend "s3" {
-        key = "mbh-conti-vsphere.state"
-        bucket = "rancher-mhassine-rampup"
-        region = "eu-central-1"
+        key = "%STATE_FILENAME%"
+        bucket = "%S3_BUCKET_NAME%"
+        region = "eu-central-1"            
     }
 }

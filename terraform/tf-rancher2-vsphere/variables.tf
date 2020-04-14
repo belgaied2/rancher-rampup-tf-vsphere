@@ -9,22 +9,3 @@ variable "rancher2_access_key" {
 variable "rancher2_secret_key" {
     default = ""
 }
-
-
-variable "vcenter_host" {
-    default = ""
-}
-
-
-variable "vcenter_username" {
-    default = ""
-}
-
-
-variable "vcenter_password" {
-    default = ""
-}
-
-variable "vm_template" {
-    default = ""
-}
