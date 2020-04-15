@@ -15,15 +15,15 @@ resource "rancher2_cluster" "vsphere_oel_cluster" {
             }
             virtual_center {
                 
-                name = "wrangler.fremont.rancherlabs.com"
-                user = "mbelgaied-hassine"
-                password = "fioj209902jns09ih092j90d90jsj90"
+                name = var.vcenter_host
+                user = var.vcenter_username
+                password = var.vcenter_password
                 port = 443
                 datacenters = "/RNCH-HE-FMT"
                 
             }
             workspace {
-                server = "wrangler.fremont.rancherlabs.com"
+                server = var.vcenter_host
                 folder = "/RNCH-HE-FMT/vm"
                 default_datastore = "/RNCH-HE-FMT/ranch01-silo01-vm01"
                 datacenter = "/RNCH-HE-FMT"
