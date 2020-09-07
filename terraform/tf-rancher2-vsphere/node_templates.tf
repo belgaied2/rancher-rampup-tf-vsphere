@@ -10,8 +10,8 @@ resource "rancher2_cloud_credential" "vsphere_creds" {
 }
 
 resource "rancher2_node_template" "vsphere_nt" {
-  name = "conti-demo-template"
-  description = "Node Template on vSphere for creating VMs using Oracle Enterprise Linux"
+  name = "merck-demo-template"
+  description = "Node Template on vSphere for creating VMs using CentOS Linux"
   cloud_credential_id = rancher2_cloud_credential.vsphere_creds.id
   vsphere_config{
       pool = "mbh"
