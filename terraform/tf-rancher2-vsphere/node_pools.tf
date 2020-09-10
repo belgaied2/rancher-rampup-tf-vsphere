@@ -7,5 +7,5 @@ resource "rancher2_node_pool" "vSphere_np" {
   quantity = 3
   control_plane = true
   etcd = true
-  worker = false
+  worker = true
 }

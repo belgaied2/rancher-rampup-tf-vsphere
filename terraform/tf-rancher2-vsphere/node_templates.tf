@@ -17,5 +17,13 @@ resource "rancher2_node_template" "vsphere_nt" {
       pool = "mbh"
       clone_from = var.vm_template
       network = ["Private Range 172.16.128.1-21"]
+      datacenter = "RNCH-HE-FMT"
+      datastore = "ranch01-silo01-vm01"
+      disk_size = "40960"
+      memory_size = "8192"
+      ssh_password = "PackerBuilt!"
+      ssh_user = "root"
+      creation_type = "template"
+      cloud_config = "runcmd:\n  - \"sudo systemctl stop firewalld.service\"\n  - \"sudo systemctl disabled firewalld.service\"\n  - \"sudo systemctl restart docker.service\""
   }
 }
